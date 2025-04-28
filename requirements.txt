@@ -1,0 +1,8 @@
+torch
+torchvision
+helper
+tqdm
+numpy
+pandas
+scikit-learn
+matplotlib
