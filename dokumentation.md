@@ -113,8 +113,45 @@ transform = {
 }
 
 
-### Datenbalance?
-Durch unseren ungleichverteilten Datensatz müssen wir darauf achten, dass wir die Klassen gleichmäßig verteilen. Das geht mit dem WeightedRandomSampler oder der 
+### Datenbalance
+
+Durch unseren ungleichverteilten Datensatz müssen wir darauf achten, dass wir die Klassen gleichmäßig gewichten – sonst würde das Modell vor allem die häufigen Klassen bevorzugen. Dazu haben wir zwei Ansätze experimentell getestet:
+
+---
+
+#### 1. Klassengewichteter Loss (CrossEntropyLoss mit `weight=`)
+
+Hierbei wird dem Verlustwert jeder Klasse ein Gewicht zugewiesen, das invers proportional zur Häufigkeit der Klasse im Trainingsdatensatz ist. Je seltener eine Klasse, desto stärker wird sie im Training gewichtet.
+
+**Beispiel:**  
+Wenn Klasse A nur 50 Bilder hat und Klasse B 500, bekommt A ein 10-fach höheres Gewicht.
+
+ Vorteil:
+- Einfach zu implementieren
+- Muss nicht in den DataLoader eingreifen
+
+ Visualisierung:  
+Wir haben die resultierenden Gewichte pro Klasse als Balkendiagramm dargestellt, um sicherzustellen, dass die Gewichtung korrekt berechnet wurde.
+
+---
+
+#### 2. WeightedRandomSampler im DataLoader
+
+Statt den Verlust zu gewichten, können wir das Training direkt auf Batch-Ebene ausbalancieren. Hierzu haben wir den `WeightedRandomSampler` eingesetzt. Er sorgt dafür, dass jede Klasse mit gleicher Wahrscheinlichkeit in einem Trainings-Batch vertreten ist – unabhängig von ihrer Häufigkeit im Datensatz.
+
+Vorteil:
+- Balanced Batches → konsistenteres Gradientenverhalten
+- Kein Eingriff in die Verlustfunktion notwendig
+
+Evaluation:  
+Ein Plot der Klassenverteilung im ersten Trainings-Batch zeigte, dass der Sampler erfolgreich eine annähernd gleichmäßige Verteilung erzeugt.
+
+---
+
+### Fazit:
+
+Beide Methoden haben ihre Stärken. Während der gewichtete Loss mathematisch elegant ist, sorgt der Sampler direkt auf Datenebene für Ausgleich. Für unsere finale Modellpipeline entschieden wir uns für den 
+**WeightedRandomSampler**, da er bessere Klassenergebnisse bei den unterrepräsentierten Klassen lieferte.
 
 
 ## 2. Modell-Architektur auswählen
