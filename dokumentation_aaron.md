@@ -10,13 +10,11 @@
 ### Normalisierung
 Normalisierung passend für unseren Datensatz berechnen. Wenn die Normalisiserung ein mal berechnet wurde, muss sie nicht noch mal veränderrt werden. Man rtestet nur, ob es mit Normalisierung besser oder schlechter ist: 
 
-Vorschlag:
+Berechnung der Normalisierung für unsern Datensatz:
 
-#%%
-"""
 Berechne Mean und Std für Normalize()
 """
-# Nur ToTensor(), keine Augmentierung oder Normalisierung!
+ Nur ToTensor(), keine Augmentierung oder Normalisierung!
 tmp_transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor()
@@ -43,23 +41,21 @@ print(f"Mean: {mean}")
 print(f"Std: {std}")
 
 
-Noramlisierungs Datensatz für unseren Datensatz
+Noramlisierungs-Werte für unseren Datensatz
 
-Nutze diese Werte für Normalize():
 Mean: [0.7438, 0.5865, 0.5869]
 Std: [0.0804, 0.1076, 0.1202]
 
 mit Normalisierung:
-Epoch [1/10], Loss: 1.101, Acc: 0.619, F1-Score: 0.619: 100%|██████████| 35/35 [08:55<00:00, 15.30s/it]
-Epoch [2/10], Loss: 0.919, Acc: 0.665, F1-Score: 0.665: 100%|██████████| 35/35 [10:16<00:00, 17.63s/it]
-Epoch [3/10], Loss: 0.827, Acc: 0.698, F1-Score: 0.698: 100%|██████████| 35/35 [09:42<00:00, 16.64s/it]
-Epoch [4/10], Loss: 0.753, Acc: 0.728, F1-Score: 0.728: 100%|██████████| 35/35 [09:41<00:00, 16.61s/it]
-Epoch [5/10], Loss: 0.708, Acc: 0.744, F1-Score: 0.744: 100%|██████████| 35/35 [09:46<00:00, 16.75s/it]
-Epoch [6/10], Loss: 0.663, Acc: 0.750, F1-Score: 0.750: 100%|██████████| 35/35 [10:51<00:00, 18.62s/it]
-Epoch [7/10], Loss: 0.571, Acc: 0.778, F1-Score: 0.778: 100%|██████████| 35/35 [10:52<00:00, 18.63s/it]
-Epoch [8/10], Loss: 0.577, Acc: 0.782, F1-Score: 0.782: 100%|██████████| 35/35 [10:53<00:00, 18.68s/it]
-Epoch [9/10], Loss: 0.500, Acc: 0.812, F1-Score: 0.812: 100%|██████████| 35/35 [10:29<00:00, 17.97s/it]
-Epoch [10/10], Loss: 0.514, Acc: 0.795, F1-Score: 0.795: 100%|██████████| 35/35 [11:05<00:00, 19.01s/it]
+Epoch [1/10], Loss: 0.974, Acc: 0.650, F1-Score: 0.650: 100%|██████████| 35/35 [11:13<00:00, 19.26s/it]
+Epoch [2/10], Loss: 0.874, Acc: 0.685, F1-Score: 0.685: 100%|██████████| 35/35 [11:27<00:00, 19.64s/it]
+Epoch [3/10], Loss: 0.734, Acc: 0.735, F1-Score: 0.735: 100%|██████████| 35/35 [11:31<00:00, 19.77s/it]
+Epoch [4/10], Loss: 0.675, Acc: 0.749, F1-Score: 0.749: 100%|██████████| 35/35 [11:44<00:00, 20.12s/it]
+Epoch [5/10], Loss: 0.653, Acc: 0.763, F1-Score: 0.763: 100%|██████████| 35/35 [12:38<00:00, 21.67s/it]
+Epoch [6/10], Loss: 0.639, Acc: 0.760, F1-Score: 0.760: 100%|██████████| 35/35 [11:37<00:00, 19.92s/it]
+Epoch [7/10], Loss: 0.589, Acc: 0.786, F1-Score: 0.786: 100%|██████████| 35/35 [13:44<00:00, 23.56s/it]
+Epoch [8/10], Loss: 0.528, Acc: 0.807, F1-Score: 0.807: 100%|██████████| 35/35 [12:29<00:00, 21.40s/it]
+Epoch [9/10], Loss: 0.505, Acc: 0.808, F1-Score: 0.808: 100%|██████████| 35/35 [12:25<00:00, 21.95s/it]
 
 ohne Normalisierung:
 
