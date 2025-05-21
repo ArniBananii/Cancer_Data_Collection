@@ -154,6 +154,52 @@ Beide Methoden haben ihre Stärken. Während der gewichtete Loss mathematisch el
 **WeightedRandomSampler**, da er bessere Klassenergebnisse bei den unterrepräsentierten Klassen lieferte.
 
 
+## Optimizer und Learning rate - Quick Test
+##### 🔧 Starte Training mit: SGD_0.01
+SGD_0.01 | Loss: 1.978 | Acc: 0.289 | F1: 0.289: 100%|██████████| 35/35 [03:31<00:00,  6.04s/it]
+##### SGD_0.01 Epoch 2/2:   0%|          | 0/35 [00:00<?, ?it/s]
+SGD_0.01 | Loss: 1.439 | Acc: 0.482 | F1: 0.482: 100%|██████████| 35/35 [03:00<00:00,  5.15s/it]
+##### ✅ SGD_0.01 → Test Accuracy: 50.000%
+
+
+##### 🔧 Starte Training mit: SGD_0.001
+SGD_0.001 | Loss: 2.199 | Acc: 0.127 | F1: 0.127: 100%|██████████| 35/35 [02:42<00:00,  4.65s/it]
+SGD_0.001 Epoch 2/2:   0%|          | 0/35 [00:00<?, ?it/s]
+SGD_0.001 | Loss: 2.112 | Acc: 0.230 | F1: 0.230: 100%|██████████| 35/35 [02:47<00:00,  4.79s/it]
+##### ✅ SGD_0.001 → Test Accuracy: 34.746%
+
+
+##### 🔧 Starte Training mit: Adam_0.001
+Adam_0.001 | Loss: 1.537 | Acc: 0.444 | F1: 0.444: 100%|██████████| 35/35 [02:48<00:00,  4.81s/it]
+Adam_0.001 Epoch 2/2:   0%|          | 0/35 [00:00<?, ?it/s]
+Adam_0.001 | Loss: 1.115 | Acc: 0.588 | F1: 0.588: 100%|██████████| 35/35 [02:50<00:00,  4.87s/it]
+##### ✅ Adam_0.001 → Test Accuracy: 52.542%
+
+
+##### 🔧 Starte Training mit: Adam_0.0001
+Adam_0.0001 | Loss: 2.114 | Acc: 0.229 | F1: 0.229: 100%|██████████| 35/35 [02:51<00:00,  4.90s/it]
+Adam_0.0001 Epoch 2/2:   0%|          | 0/35 [00:00<?, ?it/s]
+Adam_0.0001 | Loss: 1.827 | Acc: 0.431 | F1: 0.431: 100%|██████████| 35/35 [02:40<00:00,  4.60s/it]
+##### ✅ Adam_0.0001 → Test Accuracy: 50.000%
+
+##### 🔧 Starte Training mit: RMSprop_0.001
+RMSprop_0.001 | Loss: 1.930 | Acc: 0.295 | F1: 0.295: 100%|██████████| 35/35 [02:40<00:00,  4.59s/it]
+RMSprop_0.001 Epoch 2/2:   0%|          | 0/35 [00:00<?, ?it/s]
+RMSprop_0.001 | Loss: 1.354 | Acc: 0.510 | F1: 0.510: 100%|██████████| 35/35 [02:50<00:00,  4.87s/it]
+##### ✅ RMSprop_0.001 → Test Accuracy: 51.695%
+
+### 📊 Optimizer-Vergleich
+
+| Optimizer       | Accuracy |
+|-----------------|--------|
+| Adam\_0.001     | 52.54% |
+| RMSprop\_0.001  | 51.69% |
+| SGD\_0.01       | 50.00% |
+| Adam\_0.0001    | 50.00% |
+| SGD\_0.001      | 34.75% |
+
+
+
 ## 2. Modell-Architektur auswählen
 EfficentNet-B0
 MobileNetV3
@@ -175,6 +221,5 @@ ggf. Early Stopping
 
 
 AJ:
-Learning Rate 
-Optimizer
-Paper Methodology
+Learning Scheduler
+Optimizer - 5 oder 10 Epochen!!
