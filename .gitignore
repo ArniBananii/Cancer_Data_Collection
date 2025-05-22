@@ -180,3 +180,4 @@ cython_debug/
 AugmentedData
 stain_bilder
 
+Data/Train/**/output
