@@ -235,10 +235,72 @@ Beide Methoden haben ihre Stärken. Während der gewichtete Loss mathematisch el
 
 
 ## 2. Modell-Architektur auswählen
-EfficentNet-B0
-MobileNetV3
-Resnet18, ResNet34 Resnet50
-VGG16
+Sehr gerne! Hier sind die Trainingszeiten (pro Epoche, gerundet auf ganze Sekunden) in die Übersichtstabelle integriert, gefolgt von einer Analyse der Trainingszeiten im Kontext der Modellperformance.
+
+---
+
+## Übersichtstabelle: Modelle, Macro-F1, Beste Val-Acc, Beste Epoche, Zeit pro Epoche
+
+| Modell                | Macro-F1 | Beste Val-Acc | Epoche | Zeit/Epoche (s) |
+|-----------------------|----------|---------------|--------|-----------------|
+| SqueezeNet1_0         | 0.433    | 0.591         | 40     | 34              |
+| ShuffleNet_V2_X1_0    | 0.546    | 0.722         | 12     | 31              |
+| MobileNet_V2          | 0.514    | 0.737         | 16     | 34              |
+| MobileNet_V3_Large    | 0.498    | 0.752         | 27     | 34              |
+| MobileNet_V3_Small    | 0.453    | 0.722         | 38     | 31              |
+| ResNet18              | 0.474    | 0.740         | 23     | 35              |
+| ResNet34              | 0.493    | 0.678         | 9      | 39              |
+| ResNet50              | 0.576    | 0.716         | 8      | 48              |
+| EfficientNet_B0       | 0.581    | 0.761         | 13     | 37              |
+| EfficientNet_B1       | 0.540    | 0.737         | 4      | 41              |
+| EfficientNet_B2       | 0.524    | 0.764         | 22     | 42              |
+| VGG16                 | 0.471    | 0.427         | 10     | 55              |
+| VGG19                 | 0.277    | 0.484         | 17     | 59              |
+| DenseNet121           | 0.518    | 0.758         | 12     | 47              |
+| DenseNet169           | 0.473    | ---           | ---    | 51              |
+
+*Hinweis: Die Zeit pro Epoche ist ein Mittelwert aus den angegebenen epoch_time-Werten, gerundet.*
+
+---
+
+## Analyse der Trainingszeiten
+
+### 1. **Kompakte Modelle (MobileNet, ShuffleNet, SqueezeNet)**
+- **Trainingszeiten pro Epoche:** 31–34 Sekunden
+- **Performance:** Gute Macro-F1-Scores (0.43–0.55), besonders ShuffleNet und MobileNet.
+- **Fazit:** Sehr effizient, ideal für Prototyping oder Edge-Deployment.
+
+### 2. **Klassische und größere CNNs (ResNet, EfficientNet, DenseNet)**
+- **Trainingszeiten pro Epoche:** 35–51 Sekunden
+- **Performance:** Beste Macro-F1-Scores (0.52–0.58), insbesondere EfficientNet_B0/B2 und ResNet50.
+- **Fazit:** Bieten das beste Verhältnis aus Trainingszeit und Genauigkeit. EfficientNet_B0 sticht hervor: Hohe Genauigkeit bei moderater Trainingszeit.
+
+### 3. **VGG-Modelle**
+- **Trainingszeiten pro Epoche:** 55–59 Sekunden
+- **Performance:** Deutlich schlechter (VGG16: 0.47, VGG19: 0.28 Macro-F1).
+- **Fazit:** Sehr lange Trainingszeiten und unterdurchschnittliche Performance – für diesen Task nicht zu empfehlen.
+
+### 4. **DenseNet**
+- **Trainingszeiten pro Epoche:** 47–51 Sekunden
+- **Performance:** Im Mittelfeld (0.47–0.52 Macro-F1).
+- **Fazit:** Akzeptabel, aber EfficientNet ist meist schneller und genauer.
+
+---
+
+## Fazit & Empfehlung
+
+- **EfficientNet_B0** und **ResNet50** bieten das beste Gesamtpaket: Hohe Genauigkeit bei noch akzeptabler Trainingszeit.
+- **MobileNet** und **ShuffleNet** sind ideal, wenn Ressourcen oder Zeit knapp sind, mit nur geringem Genauigkeitsverlust.
+- **VGG-Modelle** sind ineffizient und liefern keine besseren Ergebnisse – für diesen Anwendungsfall nicht sinnvoll.
+
+**Empfehlung:** Wenn du schnell viele Modelle testen willst, nimm MobileNet oder ShuffleNet. Für die beste Performance bei vertretbarer Zeit: EfficientNet_B0 oder ResNet50.
+
+---
+
+**Fragen zu bestimmten Modellen, Details zu einzelnen Zeiten oder möchtest du die Inferenzzeiten auch analysieren?** Sag Bescheid!
+
+Quellen
+
 
 ## 3. Hyperparameter optimieren
 Epochen
